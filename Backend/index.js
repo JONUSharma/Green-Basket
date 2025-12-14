@@ -11,7 +11,7 @@ const cors = require("cors")
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://green-basket.vercel.app" // add your vercel URL
+    "https://green-basket.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
