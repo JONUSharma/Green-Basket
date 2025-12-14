@@ -8,11 +8,20 @@ const router = require("./Routes/OrderRoutes")
 const app = express()
 const cors = require("cors")
 
-connectDB();
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
-}))
+  origin: [
+    "http://localhost:5173",
+    "https://green-basket.vercel.app" // add your vercel URL
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.options("*", cors());
+
+connectDB();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 const port = process.env.PORT

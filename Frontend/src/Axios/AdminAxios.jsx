@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://green-basket-backend-wji4.onrender.com",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
