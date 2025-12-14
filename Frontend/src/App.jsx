@@ -3,7 +3,7 @@ import {Toaster} from "sonner"
 import { useState } from "react";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
-import Auth from "./pages/Auth";
+import Auth from "./Pages/Auth";
 import Products from "./Pages/Products";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import FarmerDashboard from "./Pages/dashboard/FarmerDashboard.jsx";
