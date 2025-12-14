@@ -8,7 +8,7 @@ import Products from "./Pages/Products";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import FarmerDashboard from "./Pages/dashboard/FarmerDashboard.jsx";
 import BuyerDashboard from "./Pages/dashboard/BuyerDashboard.jsx";
-import Footer from "./components/Footer";
+import Footer from "./Components/Footer";
 import { useSelector } from "react-redux";
 import ProductDetails from "./Components/products/ProductDetails.jsx"
 import { initialProducts } from './data/mockData.js';
