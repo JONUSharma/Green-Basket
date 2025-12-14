@@ -13,20 +13,20 @@ const signup = async (req, res, next) => {
         if (!name || !email || !password || !role || !phone || !confirmPassword) {
             return res.status(400).json({ success: false, message: "Please fill all the details." });
         }
-
+        console.log("signup started");
         if (password !== confirmPassword) {
             return res.status(400).json({ success: false, message: "Password and Confirm Password do not match." });
         }
-
+        console.log("generate otp call")
         const otp = generateOtp()
         const otpExpiry = Date.now() + 15 * 60 * 1000; // 15 minutes from now
 
+        console.log("check user already exist or not")
         const existingUser = await User.findOne({ $or: [{ phone }, { email }] });
         if (existingUser) {
             const message = existingUser.email === email ? "User with this email already exists" : "User with this phone number already exists";
             return res.status(400).json({ success: false, message: message });
         }
-
         const newUser = await User.create({
             name,
             email,
@@ -36,13 +36,8 @@ const signup = async (req, res, next) => {
             otp,
             otpExpiry
         });
-
-        try{
+        console.log("try to send otp")
         await sendOtp(email, otp);
-        }
-        catch(error){
-            return res.status(500).json({ success: false, message: error.message });
-        }
         await newUser.save({ validateBeforeSave: false });
         res.status(201).json({
             success: true,
