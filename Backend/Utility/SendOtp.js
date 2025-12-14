@@ -12,20 +12,12 @@ const sendOtp = async (email, otp) => {
         },
     });
 
-    const mailOption = {
-        from: process.env.OTP_EMAIL_USER,
-        to: email,
-        subject: "Verify your account by otp",
-        text: `Your otp is ${otp} and it will expire in 5 min`,
-        html: `<p>Your otp is <strong>${otp}</strong> and it will expire in 5 minutes.</p>`,
-        attachments: [],
-        headers: {
-            "X-Priority": "1",
-            "X-Mailer": "Nodemailer"
-        }
-    }
-
-    await Transporter.sendMail(mailOption);
+    await Transporter.sendMail({
+    from: `"Green Basket" <${process.env.OTP_EMAIL_USER}>`,
+    to: email,
+    subject: "Verify your account",
+    html: `<p>Your OTP is <b>${otp}</b>. It expires in 5 minutes.</p>`,
+  });
 }
 
 module.exports = {

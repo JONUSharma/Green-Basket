@@ -37,7 +37,12 @@ const signup = async (req, res, next) => {
             otpExpiry
         });
 
+        try{
         await sendOtp(email, otp);
+        }
+        catch(error){
+            return res.status(500).json({ success: false, message: error.message });
+        }
         await newUser.save({ validateBeforeSave: false });
         res.status(201).json({
             success: true,
