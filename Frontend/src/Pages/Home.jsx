@@ -1,7 +1,7 @@
 // src/pages/HomePage.jsx
 import React from 'react';
-import Hero from '../components/Hero.jsx';
-import HowItWorksSection from '../components/HowItWorksSection.jsx';
+import Hero from '../Components/Hero.jsx';
+import HowItWorksSection from '../Components/HowItWorksSection.jsx';
 import ProductsPage from './Products.jsx';
 import AboutSection from '../Components/About/AboutSection.jsx';
 

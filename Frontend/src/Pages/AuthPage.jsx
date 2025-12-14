@@ -1,7 +1,7 @@
 // src/pages/AuthPage.jsx
 import React, { useState } from 'react';
 import { ShoppingBag, Tractor } from 'lucide-react';
-import RoleCard from '../components/auth/RoleCard.jsx';
+import RoleCard from '../Components/auth/RoleCard.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
