@@ -9,12 +9,13 @@ export const registerUser = createAsyncThunk(
     "auth/registerUser",
     async (userData, { rejectWithValue }) => {
         try {
-            // Note: Your backend requires name, email, password, confirmPassword, role, phone
+            console.log(userData)
+            // backend requires name, email, password, confirmPassword, role, phone
             const response = await instance.post("/user/signup", userData);
+            console.log(response.data)
             toast.success("Signup successful! Please verify your email.");
             return response.data;
         } catch (error) {
-            // Return custom error message from backend if available
             toast.error(error.response.data.message || "Signup failed.");
             return rejectWithValue(error.response.data.message || "Signup failed.");
         }

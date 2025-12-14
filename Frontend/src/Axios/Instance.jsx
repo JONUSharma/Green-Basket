@@ -5,7 +5,8 @@ const instance = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-  }
+  },
+  timeout : 15000
 })
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
