@@ -44,7 +44,7 @@ export default function App() {
                 <Route path= "/payment" element = {<Payment/>} />
                 <Route path= "/checkout/:productId" element = {<Checkout/>} />
                 <Route path= "/order-success" element = {<OrderSuccess/>} />
-
+                <Route path="/contact" element={<ContactForm />} />
                 <Route path="/dashboard" element={
                     <ProtectedRoute>
                         {/* <DashboardSelector /> */}
