@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser, verifyOtp, loginUser, clearError } from "../Store/UserThunk/AuthSlice.jsx";
+import { registerUser, verifyOtp, loginUser, clearError, resetOtpState } from "../Store/UserThunk/AuthSlice.jsx";
 import { useNavigate } from "react-router-dom";
+import {  ArrowRight, ArrowLeft } from "lucide-react";
+
 // Component for the OTP verification screen
 const OtpVerification = ({ email }) => {
   const [otp, setOtp] = useState("");
@@ -66,11 +68,11 @@ export default function Auth() {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: "", email: "", password: "", confirmPassword: "", role: "retailer", phone: "",
   });
 
-  const dispatch = useDispatch();
   const { isAuthenticated, isLoading, error, isOtpSent, tempEmail, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -91,6 +93,7 @@ export default function Auth() {
       setFormData({ email: "", password: "", confirmPassword: "", role: "", phone: "" });
     } else {
       dispatch(registerUser(formData))
+      // setFormData({ name: "", email: "", password: "", confirmPassword: "", role: "", phone: "" });
     }
   };
 
@@ -98,6 +101,17 @@ export default function Auth() {
     return (
       <div className="flex justify-center items-center min-h-screen bg-green-100">
         <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-green-300">
+           <div className="">
+                <button
+                    onClick={ () => {
+                      dispatch(resetOtpState());
+                      setIsLogin(false)
+                    }}
+                    className="flex items-center cursor-pointer text-green-700 mb-4 hover:underline"
+                >
+                    <ArrowLeft size={20} /> Back
+                </button>
+            </div>
           <h2 className="text-3xl font-bold text-center text-green-700 mb-6">Verify Your Email ✉️</h2>
           <OtpVerification email={tempEmail} />
           <p className="text-center text-green-800 mt-4 text-sm">
@@ -148,7 +162,7 @@ export default function Auth() {
           <div className="relative w-full">
             <Input label="Password" name="password" type={showPassword ? "text" : "password"} value={formData.password} onChange={handleChange} />
             <button onClick={handleTogglePassword} className="absolute right-3 top-[40px] -translate-y-1/5 text-sm text-green-600" type="button">{showPassword ? "Hide" : "Show"}</button>
-            
+
           </div>
           {!isLogin && (
             <Input

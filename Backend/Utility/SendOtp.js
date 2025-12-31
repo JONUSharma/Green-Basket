@@ -17,8 +17,9 @@ const generateOtp = () => {
  */
 const sendOtp = async (email, otp) => {
     try {
+        console.log("from sendOtp", email)
         await resend.emails.send({
-            from: process.env.OTP_EMAIL_USER || "jonusharma4440@gmail.com",
+            from: process.env.OTP_EMAIL_USER || "onboarding@resend.dev",
             to: email,
             subject: "Verify Your Account - OTP Code",
             html: `

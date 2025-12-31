@@ -83,6 +83,10 @@ const authSlice = createSlice({
             localStorage.removeItem("user");
             localStorage.removeItem("token");
         },
+        resetOtpState: (state) => {
+            state.isOtpSent = false;
+            state.tempEmail = null;
+        },
         clearError: (state) => {
             state.error = null;
         }
@@ -141,5 +145,5 @@ const authSlice = createSlice({
 
 
 
-export const { logout, clearError } = authSlice.actions;
+export const { logout, clearError, resetOtpState } = authSlice.actions;
 export default authSlice.reducer;
